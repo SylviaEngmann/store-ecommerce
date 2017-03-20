@@ -1,0 +1,83 @@
+
+<!--Home page for admin -->
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Admin Page</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">The BOOKSTOUR</a>
+    </div>
+  </nav>
+    <div class="container">
+      <br>
+      <h1 class="header center orange-text">Welcome, Admin</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">What would you like to do today?</h5>
+      </div>
+    </div>
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col m12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Employee Management</h5>
+            <p class="light"></p>
+          </div>
+          <div class="row center">
+        <a href="employees.html" id="download-button" class="btn-large waves-effect waves-light orange">Add Employees</a>
+        <a href="search.php" id="download-button" class="btn-large waves-effect waves-light orange">Search Employees</a>
+        </div>
+
+        <div class="col m12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Customer Management</h5>
+
+            <p class="light"></p>
+          </div>
+          <div class="row center">
+        <a href="customers.html" id="download-button" class="btn-large waves-effect waves-light orange">Add Customers</a>
+        <a href="csearch.php" id="download-button" class="btn-large waves-effect waves-light orange">Search Customers</a>
+
+          </div>
+        </div>
+		
+		<div class="col m12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">book</i></h2>
+            <h5 class="center">Products</h5>
+
+            <p class="light"></p>
+          </div>
+          <div class="row center">
+        <a href="add.php" id="download-button" class="btn-large waves-effect waves-light orange">Add Products</a>
+        <a href="List.php" id="download-button" class="btn-large waves-effect waves-light orange">View Products</a>
+
+          </div>
+        </div>
+		
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>

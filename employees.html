@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Admin Page</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  </head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">THE BOOKSTour</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Settings</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Settings</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+    <div class="container">
+      <br>
+      <h5><center>Add an Employee</center></h5>
+      <form>
+        <div class="input-field">
+          <input placeholder="Employee Name" id="ename" type="text" required>
+        </div>
+        <div class="input-field">
+          <input placeholder="Zip Code"id="zip" type="number" required>
+        </div>
+        <div class="input-field">
+          <input id="hdate" type="date" required>
+        </div>
+        <div class="row">
+          <div class ="row col s6">
+            <input name="empcat" type="radio" id="emp" value="emp"/>
+            <label for="emp"> Employee</label>
+          </div>
+          <div class="row col s6">
+            <input name="empcat" type="radio" id="admin" value="admin"/>
+            <label for="admin">Admin</label>
+          </div>
+        </div>  
+      </form>
+      <div class="row center">
+      <button onclick= "addEmployee()" class="btn">Add Employee</button>
+      </div>
+    </div>
+      
+  <!--  Scripts-->
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript">
+
+            var currentObject=null;
+        /**
+        * callback function for add employee method
+        */
+        function addEmployeeComplete(xhr,status){
+            if(status!="success"){
+                divStatus.innerHTML="error sending request";
+                return;
+            }
+            divStatus=xhr.responseText;
+            var obj = JSON.parse(xhr.responseText);
+            if(obj.result==0){
+                alert(obj.message);
+            }else{
+                //divStatus.innerHTML="Employee Added";
+                alert("Employee Added");
+                }
+            window.location="admin.html";
+            currentObject=null;
+        }
+        /**
+        *makes a AJAX call to server to add employee
+        */
+    function addEmployee(){
+        var ename = document.getElementById("ename").value;
+        var zip = document.getElementById("zip").value;
+        var hdate = document.getElementById("hdate").value;
+        var emptype = $('input[type="radio"]:checked').val();
+
+        $.ajax("functions.php?cmd=4&ename="+ename+"&zip="+zip+"&hdate="+hdate+"&emptype="+emptype,{async:true,complete:addEmployeeComplete});
+
+        //$.ajax("http://35.166.18.143/~gifty.mate-kole/store/functions.php?cmd=4&ename="+ename+"&zip="+zip+"&hdate="+hdate+"&emptype="+emptype,{async:true,complete:addEmployeeComplete});
+            }
+  </script> 
+
+  </body>
+</html>

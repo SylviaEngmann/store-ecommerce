@@ -1,0 +1,85 @@
+<!--Page to add customers-->
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Admin Page</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">THE BOOKSTOUR</a>
+    </div>
+  </nav>
+    <div class="container">
+      <br>
+      <h5><center>Add a Customer</center></h5>
+      <form method="post" action="customers.html">
+        <div class="input-field">
+          <input placeholder="Customer Name" id="cname" type="text" required>
+        </div>
+        <div class="input-field">
+          <input placeholder="Street" id="street" type="text" required>
+        </div>
+        <div class="input-field">
+          <input placeholder="Zip Code" id="zip" type="number" required>
+        </div>
+        <div class="input-field">
+          <input placeholder="Phone number" id="pnum" type="tel" required>
+        </div>
+      </form>
+	  <div class="row center">
+      <button onclick= "addCustomer()" class="btn">Add Customer</button>
+    </div>
+	  </div>
+      </div>
+    </div>
+  
+
+  
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript">
+            var currentObject=null;
+        /**
+        * callback function for add customer method
+        */
+        function addCustomerComplete(xhr,status){
+            if(status!="success"){
+                divStatus.innerHTML="error sending request";
+                return;
+            }
+            divStatus=xhr.responseText;
+            var obj = JSON.parse(xhr.responseText);
+            if(obj.result==0){
+                divStatus.innerHTML=obj.message;
+            }else{
+                //divStatus.innerHTML="Customer Added";
+                alert("Customer Added");
+                }
+            window.location="admin.html";
+            currentObject=null;
+        }
+        /**
+        *makes a AJAX call to server to add employee
+        */
+    function addCustomer(){
+        var cname = document.getElementById("cname").value;
+        var street = document.getElementById("street").value;
+        var zip = document.getElementById("zip").value;
+        var phonenum = document.getElementById("pnum").value;
+        
+        //$.ajax("functions.php?cmd=2&cname="+cname+"&street="+street+"&zip="+zip+"&phone="+phonenum,{async:true,complete:addCustomerComplete});
+        $.ajax("http://35.166.18.143/~gifty.mate-kole/store/functions.php?cmd=2&cname="+cname+"&street="+street+"&zip="+zip+"&phone="+phonenum,{async:true,complete:addCustomerComplete});
+            }  
+        </script> 
+
+
+  </body>
+</html>
